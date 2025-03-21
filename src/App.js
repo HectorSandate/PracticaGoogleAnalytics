@@ -10,11 +10,11 @@ import './App.css';
 // Componente para rastrear cambios de página
 const RouteTracker = () => {
   const location = useLocation();
-  
+
   useEffect(() => {
     pageView(location.pathname + location.search);
   }, [location]);
-  
+
   return null;
 };
 

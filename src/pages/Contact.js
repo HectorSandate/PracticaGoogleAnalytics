@@ -14,20 +14,24 @@ const Contact = () => {
       ...prevState,
       [name]: value
     }));
+    event('Contact', 'Field Change', name);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Enviar evento a Google Analytics cuando se envía el formulario
     event('Contact', 'Form Submit', 'Contact Form', 1);
     alert('Formulario enviado (simulación)');
     setFormData({ name: '', email: '', message: '' });
   };
 
+  const handleFormAbandon = () => {
+    event('Contact', 'Form Abandon', 'Contact Form');
+  };
+
   return (
     <div>
       <h1>Contacto</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onBlur={handleFormAbandon}>
         <div>
           <label htmlFor="name">Nombre:</label>
           <input
